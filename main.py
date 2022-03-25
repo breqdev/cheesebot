@@ -23,6 +23,9 @@ class CheesemasterReply(tweepy.Stream):
         if status.in_reply_to_status_id is not None:
             return
 
+        if status.author.id != int(os.getenv("TWITTER_USER_ID")):
+            return
+
         api.update_status(
             status="omg this blew up!!! anyways stream videos games by trixie mattel",
             in_reply_to_status_id=status.id,
